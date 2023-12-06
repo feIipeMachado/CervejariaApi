@@ -1,0 +1,23 @@
+server:
+  servlet:
+    context-path: /cerveja-api
+  port: 8081
+  error:
+    include-message: always
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:cevadb
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: 123456
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+
+weather-api: https://api.weatherapi.com/v1/current.json?key=7b8fa6a32fab4e5aba7230804231605&q=porto_Alegre
+
