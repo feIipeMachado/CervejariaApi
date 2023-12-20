@@ -4,6 +4,9 @@ import cerveja.model.Usuario;
 import cerveja.model.dto.UsuarioRequestDto;
 import cerveja.model.dto.response.UsuarioResponseDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsuarioConverter {
 
     public static Usuario converterDtoPraEntidade (UsuarioRequestDto dto) {
@@ -12,6 +15,8 @@ public class UsuarioConverter {
         usuarioEntidade.setSobrenome(dto.getSobrenome());
         usuarioEntidade.setCpf(dto.getCpf());
         usuarioEntidade.setDataNascimento(dto.getDataNascimento());
+        usuarioEntidade.setUsername(dto.getUsername());
+        usuarioEntidade.setSenha(dto.getSenha());
 
         return usuarioEntidade;
     }
@@ -25,4 +30,14 @@ public class UsuarioConverter {
 
         return usuarioResponse;
     }
+
+    public static List<UsuarioResponseDto> converterListaEntidadePraDto (List<Usuario> listaUsuarios) {
+        List<UsuarioResponseDto> listaUsuariosResponseDTO = new ArrayList<>();
+        for (Usuario u : listaUsuarios) {
+            listaUsuariosResponseDTO.add(converterEntidadePraDto(u));
+        }
+
+        return listaUsuariosResponseDTO;
+    }
+
 }
