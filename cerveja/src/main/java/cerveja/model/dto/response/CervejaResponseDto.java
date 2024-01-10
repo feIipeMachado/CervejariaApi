@@ -1,5 +1,6 @@
 package cerveja.model.dto.response;
 
+import cerveja.model.TipoCerveja;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -7,6 +8,6 @@ import java.math.BigDecimal;
 @Data
 public class CervejaResponseDto {
 
-    private String marca;
+    private String tipoCerveja;
     private BigDecimal valor;
 }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "cerveja_tb")
@@ -13,9 +12,9 @@ public class Cerveja {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
-    private String marca;
-    @Column
-    private BigDecimal valor;
+    //@Column
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "tipo_cerveja_id", nullable = false)
+    private TipoCerveja tipoCerveja;
 
 }

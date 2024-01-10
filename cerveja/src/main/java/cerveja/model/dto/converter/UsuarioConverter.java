@@ -1,7 +1,7 @@
 package cerveja.model.dto.converter;
 
 import cerveja.model.Usuario;
-import cerveja.model.dto.UsuarioRequestDto;
+import cerveja.model.dto.request.UsuarioRequestDto;
 import cerveja.model.dto.response.UsuarioResponseDto;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package cerveja.model.dto;
+package cerveja.model.dto.request;
 
 import lombok.Data;
 

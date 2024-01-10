@@ -1,0 +1,6 @@
+INSERT INTO tipo_cerveja_tb(id, nome_marca, valor) VALUES (1, 'Pilsen', 10)
+INSERT INTO tipo_cerveja_tb(id, nome_marca, valor) VALUES (2, 'Bock', 15)
+INSERT INTO tipo_cerveja_tb(id, nome_marca, valor) VALUES (3, 'IPA', 12)
+INSERT INTO tipo_cerveja_tb(id, nome_marca, valor) VALUES (4, 'APA', 12)
+INSERT INTO tipo_cerveja_tb(id, nome_marca, valor) VALUES (5, 'Weiss', 15)
+INSERT INTO tipo_cerveja_tb(id, nome_marca, valor) VALUES (6, 'Stout', 15)

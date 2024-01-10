@@ -1,10 +1,9 @@
-package cerveja.controller;
+package cerveja.controller.v1;
 
 import cerveja.model.Usuario;
-import cerveja.model.dto.UsuarioRequestDto;
+import cerveja.model.dto.request.UsuarioRequestDto;
 import cerveja.model.dto.response.UsuarioResponseDto;
 import cerveja.service.UsuarioService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,15 +29,16 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{username}")
-    public ResponseEntity<Usuario> removerUsuarioPorUsername(@PathVariable("username") String username) {
-        service.removerPorUsername(username);
-        return ResponseEntity.accepted().build();
+    public ResponseEntity<UsuarioResponseDto> removerUsuarioPorUsername(@PathVariable("username") String username) {
+        return ResponseEntity.ok(service.removerPorUsername(username));
     }
+
     @PutMapping("/username/{username}")
     public ResponseEntity<Void> alterarNomeSobrenomeDoUsuarioPorUsername(@PathVariable("username") String username,
                                                                          @RequestBody Usuario usuario) {
         Usuario usuarioAlterado = service.alterarNomeSobrenomePorUsername(username, usuario);
         return ResponseEntity.noContent().build();
     }
+
 
 }

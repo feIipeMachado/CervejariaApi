@@ -1,7 +1,7 @@
 package cerveja.service;
 
 import cerveja.model.Usuario;
-import cerveja.model.dto.UsuarioRequestDto;
+import cerveja.model.dto.request.UsuarioRequestDto;
 import cerveja.model.dto.converter.UsuarioConverter;
 import cerveja.model.dto.response.UsuarioResponseDto;
 import cerveja.repository.UsuarioRepository;
@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +26,14 @@ public class UsuarioService {
         return UsuarioConverter.converterListaEntidadePraDto(listaUsuarios);
     }
 
-    public Usuario removerPorUsername(String username) {
+    public UsuarioResponseDto removerPorUsername(String username) {
         Optional<Usuario> usuarioParaRemover = repository.findByUsername(username);
         if (usuarioParaRemover.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuario com username " + username + " não existe");
         } else {
-            repository.delete(usuarioParaRemover.get());
-            return usuarioParaRemover.get();
+            Usuario usuarioEntity = usuarioParaRemover.get();
+            repository.delete(usuarioEntity);
+            return UsuarioConverter.converterEntidadePraDto(usuarioEntity);
         }
     }
 

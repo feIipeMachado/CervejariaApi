@@ -1,4 +1,4 @@
-package cerveja.controller;
+package cerveja.controller.v1;
 
 
 import org.springframework.http.ResponseEntity;
