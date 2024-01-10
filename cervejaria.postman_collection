@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "d85b1a69-259e-40de-832c-1197e47c6ece",
+		"name": "Cervejaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27735507"
+	},
+	"item": [
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todos os usuários",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"usuario\",\r\n    \"sobrenome\": \"teste\",\r\n    \"dataNascimento\": \"2007-11-17\",\r\n    \"cpf\": \"4343443463\",\r\n    \"username\": \"usuarioTeste\",\r\n    \"senha\": \"teste123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover usuário por username",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/usuarios/usuarioTeste",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"usuarios",
+						"usuarioTeste"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar nome e sobrenome",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"usuarioTesteAlterarNome\",\r\n    \"sobrenome\": \"usuarioTesteAlterarSobrenome\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/usuarios/username/usuarioTeste",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"usuarios",
+						"username",
+						"usuarioTeste"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar tipos de cerveja",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeMarca\": \"heinekem\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/cervejas/tipoCervejas/adicionar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"cervejas",
+						"tipoCervejas",
+						"adicionar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todos os tipos de cerveja",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/cervejas/tipoCervejas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"cervejas",
+						"tipoCervejas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover tipo de cerveja",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/cerveja-api/v1/cervejas/tipoCervejas/Pilsen",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"cerveja-api",
+						"v1",
+						"cervejas",
+						"tipoCervejas",
+						"Pilsen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar valor de um tipo de cerveja",
+			"request": {
+				"method": "PUT",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
