@@ -1,6 +1,6 @@
 package cerveja.service;
 
-import cerveja.model.Usuario;
+import cerveja.model.entity.Usuario;
 import cerveja.model.dto.request.UsuarioRequestDto;
 import cerveja.model.dto.converter.UsuarioConverter;
 import cerveja.model.dto.response.UsuarioResponseDto;
@@ -45,7 +45,6 @@ public class UsuarioService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário " + nomeUsuarioAdicionado + " já existe");
         } else {
             Usuario usuarioEntidade = UsuarioConverter.converterDtoPraEntidade(usuarioDto);
-
             repository.save(usuarioEntidade);
 
         }

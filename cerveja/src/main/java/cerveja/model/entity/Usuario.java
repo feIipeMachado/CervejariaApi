@@ -1,4 +1,4 @@
-package cerveja.model;
+package cerveja.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

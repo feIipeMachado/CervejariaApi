@@ -1,13 +1,14 @@
 package cerveja.repository;
 
-
-import cerveja.model.TipoCerveja;
+import cerveja.model.entity.Pedido;
+import cerveja.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface TipoCervejaRepository extends JpaRepository<TipoCerveja, Long> {
-    public Optional<TipoCerveja> findByNomeMarca(String nome);
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+
+
 }

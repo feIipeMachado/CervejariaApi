@@ -1,8 +1,10 @@
 package cerveja.service;
 
-import cerveja.model.TipoCerveja;
+import cerveja.model.dto.converter.CervejaConverter;
+import cerveja.model.dto.request.CervejaRequestDto;
+import cerveja.model.dto.response.CervejaResponseDto;
+import cerveja.model.entity.Cerveja;
 import cerveja.repository.CervejaRepository;
-import cerveja.repository.TipoCervejaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,46 +16,46 @@ import java.util.Optional;
 @Service
 public class CervejaService {
 
-    private CervejaRepository cervejaRepository;
-    private TipoCervejaRepository tipoCervejaRepository;
+    private CervejaRepository repository;
 
-    public CervejaService (CervejaRepository cervejaRepository, TipoCervejaRepository tipoCervejaRepository) {
-        this.cervejaRepository = cervejaRepository;
-        this.tipoCervejaRepository = tipoCervejaRepository;
+    public CervejaService (CervejaRepository repository) {
+        this.repository = repository;
     }
 
-    public List<TipoCerveja> buscarTodosTiposDeCerveja() {
-        List<TipoCerveja> listaTiposDeCerveja = tipoCervejaRepository.findAll();
-        return listaTiposDeCerveja;
+    public List<CervejaResponseDto> buscarTodasAsCervejas() {
+        List<Cerveja> listaCervejasEntity = repository.findAll();
+        return CervejaConverter.converterListaEntidadePraDto(listaCervejasEntity);
     }
 
-    public void adicionarTipoCerveja(TipoCerveja tipoCerveja) {
-        String tipoCervejaAdicionado = tipoCerveja.getNomeMarca();
-        Optional<TipoCerveja> tipoCervejaExistente = tipoCervejaRepository.findByNomeMarca(tipoCervejaAdicionado);
+    public void adicionar(CervejaRequestDto cervejaDto) {
+        String nomeMarcaCervejaAdicionada = cervejaDto.getNomeMarca();
+        Optional<Cerveja> cervejaExistente = repository.findByNomeMarca(nomeMarcaCervejaAdicionada);
 
-        if (!tipoCervejaExistente.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Marca " + tipoCervejaAdicionado + " já está registrada");
+        if (!cervejaExistente.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Marca " + cervejaExistente + " já está registrada");
         } else {
-            tipoCervejaRepository.save(tipoCerveja);
+            Cerveja cervejaEntidade = CervejaConverter.converterDtoPraEntidade(cervejaDto);
+            repository.save(cervejaEntidade);
         }
     }
 
-    public TipoCerveja removerTipoCervejaPorNomeMarca(String nomeMarca) {
-        Optional<TipoCerveja> tipoCervejaParaRemoverOptional = tipoCervejaRepository.findByNomeMarca(nomeMarca);
-        if (tipoCervejaParaRemoverOptional.isEmpty()) {
+
+    public CervejaResponseDto removerCervejaPorNomeMarca(String nomeMarca) {
+        Optional<Cerveja> cervejaParaRemoverOptional = repository.findByNomeMarca(nomeMarca);
+        if (cervejaParaRemoverOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Marca" + nomeMarca + " não existe");
         } else {
-            TipoCerveja tipoCervejaParaRemover = tipoCervejaParaRemoverOptional.get();
-            tipoCervejaRepository.delete(tipoCervejaParaRemover);
-            return (tipoCervejaParaRemover);
+            Cerveja cervejaParaRemovereEntity = cervejaParaRemoverOptional.get();
+            repository.delete(cervejaParaRemovereEntity);
+            return CervejaConverter.converterEntidadePraDto(cervejaParaRemovereEntity);
         }
     }
 
-    public TipoCerveja alterarValor(String nomeMarca, BigDecimal valor) {
-        TipoCerveja tipoCervejaEncontrado = tipoCervejaRepository.findByNomeMarca(nomeMarca).get();
-        tipoCervejaEncontrado.setValor(valor);
-        tipoCervejaRepository.save(tipoCervejaEncontrado);
-        return tipoCervejaEncontrado;
+    public Cerveja alterarValor(String nomeMarca, BigDecimal valor) {
+        Cerveja cervejaEncontrada = repository.findByNomeMarca(nomeMarca).get();
+        cervejaEncontrada.setValor(valor);
+        repository.save(cervejaEncontrada);
+        return cervejaEncontrada;
     }
 
 }
